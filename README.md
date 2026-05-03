@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🛍️ Retail Customer Behavior Analysis & Churn Prediction
 
 ## 📌 Overview
@@ -229,4 +230,3 @@ L'application permet :
 * 📊 Dashboard avancé (Plotly / Power BI)
 * ☁️ Déploiement cloud (AWS / Azure)
 * 📉 Monitoring du modèle
-
