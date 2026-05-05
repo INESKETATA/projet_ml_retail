@@ -1,0 +1,363 @@
+
+<style>
+:root{--pri:#1a237e;--acc:#3949ab;--li:#e8eaf6;--gr:#546e7a;--bg:#f5f7fa;--bd:#dde3f0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:transparent;color:var(--color-text-primary);font-size:13px;line-height:1.7}
+.wrap{max-width:660px;margin:0 auto;padding:8px 0}
+
+.cover{background:linear-gradient(145deg,#0d1b6e,#1a237e,#283593);color:#fff;border-radius:var(--border-radius-lg);padding:40px 36px;margin-bottom:20px;position:relative;overflow:hidden;text-align:center}
+.cover::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.04);top:-80px;right:-80px}
+.badge{display:inline-block;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:20px;padding:4px 14px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.cover h1{font-size:24px;font-weight:500;margin-bottom:6px;line-height:1.2}
+.cover h2{font-size:13px;font-weight:400;opacity:.8;margin-bottom:24px}
+.divider{width:50px;height:2px;background:rgba(255,255,255,0.4);margin:0 auto 24px;border-radius:2px}
+.meta{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+.meta-item .mlabel{font-size:9px;opacity:.6;text-transform:uppercase;letter-spacing:1px}
+.meta-item .mval{font-size:12px;font-weight:500;margin-top:2px}
+.tags{display:flex;gap:8px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.tag{background:rgba(255,255,255,0.1);border-radius:4px;padding:3px 10px;font-size:10px;opacity:.85}
+
+.chapter{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:22px 24px;margin-bottom:16px}
+.ch-label{font-size:10px;font-weight:500;color:var(--color-text-info);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+.ch-title{font-size:18px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.ch-sub{font-size:12px;color:var(--color-text-secondary);padding-bottom:14px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:16px}
+
+h3{font-size:14px;font-weight:500;color:var(--color-text-primary);margin:18px 0 10px;display:flex;align-items:center;gap:8px}
+h3::before{content:'';width:3px;height:15px;background:var(--color-text-info);border-radius:2px;display:inline-block;flex-shrink:0}
+p{font-size:12px;color:var(--color-text-secondary);margin-bottom:10px;line-height:1.65}
+
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:10px 0}
+.card{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:14px 12px;border-left:3px solid #3949ab}
+.card-icon{font-size:18px;margin-bottom:6px}
+.card-lbl{font-size:9px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:1px}
+.card-val{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-top:2px}
+.card p{font-size:10px;margin-top:4px;margin-bottom:0}
+
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.metric{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:14px;text-align:center}
+.metric-val{font-size:22px;font-weight:500;color:var(--color-text-primary)}
+.metric-name{font-size:9px;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+.metric-badge{display:inline-block;background:var(--color-background-info);color:var(--color-text-info);border-radius:20px;padding:1px 8px;font-size:9px;margin-top:5px}
+
+.pipeline{display:flex;flex-direction:column;gap:0;margin:10px 0}
+.pstep{display:flex;align-items:flex-start;gap:12px;position:relative}
+.pstep:not(:last-child)::after{content:'';position:absolute;left:13px;top:32px;width:1px;height:calc(100% - 8px);background:var(--color-border-secondary)}
+.snum{width:28px;height:28px;background:#1a237e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;font-size:11px;flex-shrink:0;position:relative;z-index:1}
+.scontent{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:10px 14px;flex:1;margin-bottom:8px}
+.stitle{font-weight:500;font-size:12px;color:var(--color-text-primary)}
+.sdesc{font-size:11px;color:var(--color-text-secondary);margin-top:2px;line-height:1.5}
+.stag{display:inline-block;background:var(--color-background-info);color:var(--color-text-info);border-radius:4px;padding:1px 8px;font-size:10px;font-family:var(--font-mono);margin-top:5px}
+
+table{width:100%;border-collapse:collapse;font-size:11px;margin:10px 0}
+th{background:#1a237e;color:#fff;padding:8px 12px;text-align:left;font-weight:500;font-size:10px;letter-spacing:.5px}
+th:first-child{border-radius:6px 0 0 0}th:last-child{border-radius:0 6px 0 0}
+td{padding:8px 12px;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary);vertical-align:top}
+tr:nth-child(even) td{background:var(--color-background-secondary)}
+code{font-family:var(--font-mono);background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);border-radius:4px;padding:1px 5px;font-size:10px;color:var(--color-text-info)}
+
+.callout{border-radius:var(--border-radius-md);padding:12px 14px;margin:10px 0;display:flex;gap:10px;align-items:flex-start}
+.callout-info{background:var(--color-background-info);border-left:3px solid #1565c0}
+.callout-warn{background:var(--color-background-warning);border-left:3px solid #e65100}
+.callout-danger{background:var(--color-background-danger);border-left:3px solid #b71c1c}
+.callout-success{background:var(--color-background-success);border-left:3px solid #1b5e20}
+.callout-icon{font-size:15px;flex-shrink:0;line-height:1.5}
+.callout-text{font-size:11px;color:var(--color-text-secondary);line-height:1.6}
+.callout-text strong{font-weight:500;color:var(--color-text-primary);display:block;margin-bottom:2px}
+
+.tree{background:#0f1923;border-radius:var(--border-radius-md);padding:16px;font-family:var(--font-mono);font-size:10px;line-height:2;color:#e0e0e0;margin:10px 0}
+.folder{color:#64b5f6;font-weight:500}
+.file{color:#a5d6a7}
+.comment{color:#78909c}
+
+.reco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+.reco-card{border-radius:var(--border-radius-md);padding:14px;border:0.5px solid var(--color-border-tertiary)}
+.reco-card.imm{background:var(--color-background-success)}
+.reco-card.bus{background:var(--color-background-info)}
+.reco-card.ops{background:var(--color-background-warning)}
+.reco-card h4{font-size:11px;font-weight:500;margin-bottom:8px}
+.reco-card.imm h4{color:var(--color-text-success)}
+.reco-card.bus h4{color:var(--color-text-info)}
+.reco-card.ops h4{color:var(--color-text-warning)}
+.rlist{list-style:none;padding:0}
+.rlist li{font-size:10px;color:var(--color-text-secondary);padding:3px 0;border-bottom:0.5px dashed var(--color-border-tertiary);display:flex;gap:5px}
+.rlist li:last-child{border-bottom:none}
+.rlist li::before{content:'→';opacity:.5;flex-shrink:0}
+
+.footer{text-align:center;padding:16px;font-size:10px;color:var(--color-text-tertiary);border-top:0.5px solid var(--color-border-tertiary);margin-top:4px}
+
+.toc-item{display:flex;align-items:center;padding:8px 0;border-bottom:0.5px dashed var(--color-border-tertiary);gap:10px}
+.toc-num{background:#1a237e;color:#fff;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;flex-shrink:0}
+.toc-label{flex:1;font-size:12px;color:var(--color-text-primary);font-weight:500}
+</style>
+
+<div class="wrap">
+  <h2 class="sr-only">Rapport ML – Prédiction du Churn Client – Inès KETATA</h2>
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="badge">Rapport de projet Machine Learning</div>
+    <h1>Prédiction du Churn Client</h1>
+    <h2>Retail & E-commerce — Modèle SVM</h2>
+    <div class="divider"></div>
+    <div class="meta">
+      <div class="meta-item"><div class="mlabel">Auteure</div><div class="mval">Inès KETATA</div></div>
+      <div class="meta-item"><div class="mlabel">Projet</div><div class="mval">ProjetML</div></div>
+      <div class="meta-item"><div class="mlabel">Modèle</div><div class="mval">SVM (RBF)</div></div>
+      <div class="meta-item"><div class="mlabel">Interface</div><div class="mval">Streamlit</div></div>
+    </div>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">Scikit-learn</span>
+      <span class="tag">Classification</span>
+      <span class="tag">Déploiement</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="chapter">
+    <div class="ch-label">Sommaire</div>
+    <div class="ch-title">Table des matières</div>
+    <div style="margin-top:14px">
+      <div class="toc-item"><div class="toc-num">I</div><div class="toc-label">Contexte & Objectifs</div></div>
+      <div class="toc-item"><div class="toc-num">II</div><div class="toc-label">Données et structure du projet</div></div>
+      <div class="toc-item"><div class="toc-num">III</div><div class="toc-label">Méthodologie</div></div>
+      <div class="toc-item"><div class="toc-num">IV</div><div class="toc-label">Implémentation technique</div></div>
+      <div class="toc-item"><div class="toc-num">V</div><div class="toc-label">Résultats & Évaluation</div></div>
+      <div class="toc-item"><div class="toc-num">VI</div><div class="toc-label">Recommandations</div></div>
+      <div class="toc-item"><div class="toc-num">VII</div><div class="toc-label">Conclusion</div></div>
+    </div>
+  </div>
+
+  <!-- CHAPITRE I -->
+  <div class="chapter">
+    <div class="ch-label">Chapitre I</div>
+    <div class="ch-title">Contexte & Objectifs</div>
+    <div class="ch-sub">Cadrage du problème métier et définition des buts du projet</div>
+
+    <h3>Contexte métier</h3>
+    <p>Le <strong>churn client</strong> (attrition) représente l'un des défis majeurs du secteur retail et e-commerce. Identifier à l'avance les clients susceptibles de quitter la plateforme permet d'agir proactivement via des campagnes de fidélisation ciblées, réduisant les coûts d'acquisition tout en maximisant la valeur vie client.</p>
+    <div class="callout callout-info">
+      <div class="callout-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+      <div class="callout-text"><strong>Définition du churn</strong>Un client est considéré "churned" s'il cesse d'interagir au-delà d'un seuil temporel défini. La prédiction précoce permet d'intervenir avant la rupture.</div>
+    </div>
+
+    <h3>Objectifs principaux</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon"><i class="ti ti-settings" aria-hidden="true"></i></div><div class="card-lbl">Objectif 1</div><div class="card-val">Pipeline robuste</div><p>Construction d'un pipeline de traitement complet et reproductible.</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-robot" aria-hidden="true"></i></div><div class="card-lbl">Objectif 2</div><div class="card-val">Modèle fiable</div><p>Entraînement d'un classificateur SVM pour la détection du churn.</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-layout" aria-hidden="true"></i></div><div class="card-lbl">Objectif 3</div><div class="card-val">Interface Streamlit</div><p>Application interactive pour tester le modèle en temps réel.</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-database" aria-hidden="true"></i></div><div class="card-lbl">Objectif 4</div><div class="card-val">Persistance</div><p>Sauvegarde du pipeline complet pour réutilisation en production.</p></div>
+    </div>
+  </div>
+
+  <!-- CHAPITRE II -->
+  <div class="chapter">
+    <div class="ch-label">Chapitre II</div>
+    <div class="ch-title">Données & Structure du projet</div>
+    <div class="ch-sub">Description des données sources et organisation des fichiers</div>
+
+    <h3>Dataset source</h3>
+    <p>Fichier principal : <code>retail_customers_COMPLETE_CATEGORICAL.csv</code>. Contient des variables clients, comportementales et catégorielles.</p>
+
+    <table>
+      <thead><tr><th>Variable</th><th>Type</th><th>Description</th><th>Importance</th></tr></thead>
+      <tbody>
+        <tr><td><code>ChurnRiskCategory</code></td><td>Catégorielle</td><td>Catégorie de risque de churn</td><td>Haute</td></tr>
+        <tr><td><code>LoyaltyLevel</code></td><td>Catégorielle</td><td>Niveau de fidélité client</td><td>Haute</td></tr>
+        <tr><td><code>Recency</code></td><td>Numérique</td><td>Jours depuis dernier achat</td><td>Haute</td></tr>
+        <tr><td><code>CustomerTenureDays</code></td><td>Numérique</td><td>Ancienneté du client (jours)</td><td>Moyenne</td></tr>
+        <tr><td><code>PreferredMonth</code></td><td>Catégorielle</td><td>Mois de préférence d'achat</td><td>Moyenne</td></tr>
+        <tr><td><code>Country</code></td><td>Catégorielle</td><td>Pays du client</td><td>Faible</td></tr>
+        <tr><td><code>RegistrationDate</code></td><td>Date</td><td>Date d'inscription</td><td>Faible</td></tr>
+        <tr><td><code>LastLoginIP</code></td><td>Texte</td><td>Adresse IP du dernier login</td><td>Faible</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Structure du projet</h3>
+    <div class="tree">
+      <span class="folder">ProjetML/</span><br>
+      &nbsp;&nbsp;├── <span class="folder">data/</span><br>
+      &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="folder">raw/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># données brutes</span><br>
+      &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="folder">train_test/</span>&nbsp;&nbsp;&nbsp;<span class="comment"># splits ML stratifiés</span><br>
+      &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="folder">processed/</span>&nbsp;&nbsp;&nbsp;<span class="comment"># features engineerées</span><br>
+      &nbsp;&nbsp;├── <span class="folder">src/</span><br>
+      &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="file">train_model.py</span>&nbsp;&nbsp;<span class="comment"># entraînement & sauvegarde</span><br>
+      &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="file">predict.py</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># prédiction</span><br>
+      &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="file">preprocessing.py</span><span class="comment"># parsing & nettoyage</span><br>
+      &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="file">utils.py</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># encodage, PCA, scaler</span><br>
+      &nbsp;&nbsp;├── <span class="folder">app/</span><br>
+      &nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="file">streamlit_app.py</span><span class="comment"># interface utilisateur</span><br>
+      &nbsp;&nbsp;├── <span class="folder">models/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># objets .joblib sauvegardés</span><br>
+      &nbsp;&nbsp;└── <span class="folder">notebooks/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># exploration & dev</span>
+    </div>
+  </div>
+
+  <!-- CHAPITRE III -->
+  <div class="chapter">
+    <div class="ch-label">Chapitre III</div>
+    <div class="ch-title">Méthodologie</div>
+    <div class="ch-sub">Pipeline de transformation des données et choix de modélisation</div>
+
+    <h3>Pipeline de transformation (7 étapes)</h3>
+    <div class="pipeline">
+      <div class="pstep"><div class="snum">1</div><div class="scontent"><div class="stitle">Parseur</div><div class="sdesc">Parsing des dates (RegistrationDate) et traitement des adresses IP.</div><span class="stag">Parseur</span></div></div>
+      <div class="pstep"><div class="snum">2</div><div class="scontent"><div class="stitle">Nettoyage & Imputation</div><div class="sdesc">Gestion des valeurs manquantes et traitement des outliers.</div><span class="stag">RetailPreprocessor</span></div></div>
+      <div class="pstep"><div class="snum">3</div><div class="scontent"><div class="stitle">Feature Engineering</div><div class="sdesc">Création de variables dérivées (tenure segments, ratios comportementaux).</div><span class="stag">FeatureEngineer</span></div></div>
+      <div class="pstep"><div class="snum">4</div><div class="scontent"><div class="stitle">Encodage catégoriel</div><div class="sdesc">Transformation des variables catégorielles (One-Hot / Label Encoding).</div><span class="stag">CategoricalEncoder</span></div></div>
+      <div class="pstep"><div class="snum">5</div><div class="scontent"><div class="stitle">Réduction de colinéarité</div><div class="sdesc">Suppression des variables fortement corrélées (VIF / Pearson).</div><span class="stag">CollinearityReducer</span></div></div>
+      <div class="pstep"><div class="snum">6</div><div class="scontent"><div class="stitle">Normalisation</div><div class="sdesc">Mise à l'échelle des features numériques (StandardScaler). Indispensable pour le SVM.</div><span class="stag">FeatureScaler</span></div></div>
+      <div class="pstep"><div class="snum">7</div><div class="scontent"><div class="stitle">Réduction PCA (optionnelle)</div><div class="sdesc">Réduction de dimensionnalité par analyse en composantes principales.</div><span class="stag">PCAReducer</span></div></div>
+    </div>
+
+    <h3>Modèle retenu — SVM (RBF)</h3>
+    <div class="callout callout-success">
+      <div class="callout-icon"><i class="ti ti-check" aria-hidden="true"></i></div>
+      <div class="callout-text"><strong>Algorithme : Support Vector Machine (SVC)</strong>Robuste pour la classification binaire avec des frontières de décision non-linéaires, efficace sur données normalisées.</div>
+    </div>
+    <table>
+      <thead><tr><th>Hyperparamètre</th><th>Valeur</th><th>Rôle</th></tr></thead>
+      <tbody>
+        <tr><td><code>kernel</code></td><td>rbf</td><td>Noyau radial — capture les relations non-linéaires</td></tr>
+        <tr><td><code>C</code></td><td>10</td><td>Régularisation — compromis biais/variance</td></tr>
+        <tr><td><code>gamma</code></td><td>0.01</td><td>Portée de l'influence de chaque point</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CHAPITRE IV -->
+  <div class="chapter">
+    <div class="ch-label">Chapitre IV</div>
+    <div class="ch-title">Implémentation Technique</div>
+    <div class="ch-sub">Scripts, interface utilisateur et artefacts produits</div>
+
+    <h3>Scripts principaux</h3>
+    <table>
+      <thead><tr><th>Fichier</th><th>Rôle</th></tr></thead>
+      <tbody>
+        <tr><td><code>train_model.py</code></td><td>Construction du pipeline, entraînement du modèle, sauvegarde des objets</td></tr>
+        <tr><td><code>predict.py</code></td><td>Chargement du modèle et prédiction sur nouvelles observations</td></tr>
+        <tr><td><code>preprocessing.py</code></td><td>Classes Parseur, RetailPreprocessor, FeatureEngineer</td></tr>
+        <tr><td><code>utils.py</code></td><td>CategoricalEncoder, FeatureScaler, CollinearityReducer, PCAReducer</td></tr>
+        <tr><td><code>streamlit_app.py</code></td><td>Interface interactive — saisie, validation, prédiction en temps réel</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Artefacts sauvegardés (models/)</h3>
+    <table>
+      <thead><tr><th>Fichier .joblib</th><th>Contenu</th></tr></thead>
+      <tbody>
+        <tr><td><code>parseur.joblib</code></td><td>Parseur de dates et d'IP</td></tr>
+        <tr><td><code>preprocessor.joblib</code></td><td>Nettoyage & imputation</td></tr>
+        <tr><td><code>feature_engineer.joblib</code></td><td>Feature engineering</td></tr>
+        <tr><td><code>encoder.joblib</code></td><td>Encodage catégoriel</td></tr>
+        <tr><td><code>reducer.joblib</code></td><td>Réduction de colinéarité</td></tr>
+        <tr><td><code>scaler.joblib</code></td><td>Normalisation (StandardScaler)</td></tr>
+        <tr><td><code>pca_reducer.joblib</code></td><td>PCA si activée</td></tr>
+        <tr><td><code>best_svm_model_02_Pipeline.joblib</code></td><td>Modèle SVM final</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CHAPITRE V -->
+  <div class="chapter">
+    <div class="ch-label">Chapitre V</div>
+    <div class="ch-title">Résultats & Évaluation</div>
+    <div class="ch-sub">Métriques de performance et analyse qualitative du modèle</div>
+
+    <h3>Métriques de classification</h3>
+    <div class="metrics">
+      <div class="metric"><div class="metric-val">—</div><div class="metric-name">Accuracy</div><div class="metric-badge">À renseigner</div></div>
+      <div class="metric"><div class="metric-val">—</div><div class="metric-name">Precision</div><div class="metric-badge">À renseigner</div></div>
+      <div class="metric"><div class="metric-val">—</div><div class="metric-name">Recall</div><div class="metric-badge">À renseigner</div></div>
+      <div class="metric"><div class="metric-val">—</div><div class="metric-name">F1-Score</div><div class="metric-badge">À renseigner</div></div>
+    </div>
+    <div class="callout callout-warn">
+      <div class="callout-icon"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div>
+      <div class="callout-text"><strong>Métriques non encore renseignées</strong>Les valeurs numériques exactes doivent être extraites depuis <code>src/train_model.py</code> après exécution et insérées ici.</div>
+    </div>
+
+    <h3>Limitations identifiées</h3>
+    <div class="callout callout-danger"><div class="callout-icon"><i class="ti ti-x" aria-hidden="true"></i></div><div class="callout-text"><strong>Pas de validation croisée</strong>Absence de rapport k-fold, ce qui limite la robustesse de l'évaluation.</div></div>
+    <div class="callout callout-danger"><div class="callout-icon"><i class="ti ti-x" aria-hidden="true"></i></div><div class="callout-text"><strong>Pas de courbes ROC/PR ni matrice de confusion</strong>Visualisations indispensables pour évaluer la qualité de séparation des classes.</div></div>
+    <div class="callout callout-danger"><div class="callout-icon"><i class="ti ti-x" aria-hidden="true"></i></div><div class="callout-text"><strong>Déséquilibre de classes non documenté</strong>Le ratio churn/non-churn n'est pas précisé, ce qui peut biaiser les métriques.</div></div>
+  </div>
+
+  <!-- CHAPITRE VI -->
+  <div class="chapter">
+    <div class="ch-label">Chapitre VI</div>
+    <div class="ch-title">Recommandations</div>
+    <div class="ch-sub">Pistes d'amélioration techniques, métier et opérationnelles</div>
+
+    <div class="reco-grid">
+      <div class="reco-card imm">
+        <h4>Immédiates</h4>
+        <ul class="rlist">
+          <li>Compléter <code>requirements.txt</code></li>
+          <li>Documenter les classes <code>src/</code></li>
+          <li>Ajouter rapport de métriques</li>
+          <li>Intégrer matrice de confusion</li>
+          <li>Ajouter courbes ROC et PR</li>
+        </ul>
+      </div>
+      <div class="reco-card bus">
+        <h4>Métier</h4>
+        <ul class="rlist">
+          <li>Enrichir dataset (variables comportementales)</li>
+          <li>Tester Random Forest, XGBoost</li>
+          <li>Traiter déséquilibre de classes (SMOTE)</li>
+          <li>Ajouter interprétabilité (SHAP)</li>
+          <li>Validation avec experts métier</li>
+        </ul>
+      </div>
+      <div class="reco-card ops">
+        <h4>Opérationnelles</h4>
+        <ul class="rlist">
+          <li>Déployer en container Docker</li>
+          <li>Ajouter tests unitaires pipeline</li>
+          <li>Versionner modèles (MLflow)</li>
+          <li>Monitoring en production</li>
+          <li>Exposer API REST</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Comparaison des modèles envisagés</h3>
+    <table>
+      <thead><tr><th>Modèle</th><th>Avantages</th><th>Inconvénients</th><th>Statut</th></tr></thead>
+      <tbody>
+        <tr><td>SVM (actuel)</td><td>Robuste sur petits datasets</td><td>Lent sur grands volumes</td><td>En prod.</td></tr>
+        <tr><td>Random Forest</td><td>Interprétable, stable</td><td>Moins précis que boosting</td><td>Priorité 1</td></tr>
+        <tr><td>XGBoost</td><td>Très performant, gère déséquilibre</td><td>Nombreux hyperparamètres</td><td>Priorité 2</td></tr>
+        <tr><td>LightGBM</td><td>Rapide sur grands datasets</td><td>Peut sur-ajuster</td><td>Priorité 3</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CHAPITRE VII -->
+  <div class="chapter">
+    <div class="ch-label">Chapitre VII</div>
+    <div class="ch-title">Conclusion</div>
+    <div class="ch-sub">Synthèse du projet et perspectives</div>
+
+    <p>Ce projet a permis de construire un système complet de prédiction du churn client dans le secteur retail. L'architecture est modulaire, reproductible et directement déployable, couvrant l'ensemble du cycle ML de l'ingestion des données brutes à l'interface de prédiction en temps réel.</p>
+
+    <div class="card-grid">
+      <div class="card"><div class="card-icon"><i class="ti ti-check" aria-hidden="true"></i></div><div class="card-lbl">Réalisé</div><div class="card-val">Pipeline ML complet</div><p>7 étapes de transformation encapsulées et sauvegardées</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-check" aria-hidden="true"></i></div><div class="card-lbl">Réalisé</div><div class="card-val">Modèle SVM</div><p>Entraîné, optimisé et persisté en .joblib</p></div>
+      <div class="card"><div class="card-icon"><i class="ti ti-check" aria-hidden="true"></i></div><div class="card-lbl">Réalisé</div><div class="card-val">App Streamlit</div><p>Interface opérationnelle pour prédictions interactives</p></div>
+    </div>
+
+    <div class="callout callout-info">
+      <div class="callout-icon"><i class="ti ti-target" aria-hidden="true"></i></div>
+      <div class="callout-text"><strong>Prochaines étapes prioritaires</strong>
+      1. Ajouter métriques numériques, matrice de confusion et courbes ROC.<br>
+      2. Documenter l'ensemble du code source avec des docstrings.<br>
+      3. Tester Random Forest et XGBoost pour benchmarking.<br>
+      4. Conteneuriser l'application Streamlit (Docker) pour la production.</div>
+    </div>
+
+    <div class="footer">
+      Rapport — <strong>ProjetML</strong> · Auteure : <strong>Inès KETATA</strong> · Pour exporter en PDF : Ctrl+P → Enregistrer en PDF
+    </div>
+  </div>
+</div>
